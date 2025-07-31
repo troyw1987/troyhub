@@ -12,16 +12,27 @@ local settings = _G.Settings or {
     }
 } -- defaults
 
-local utilities = _G.Utilities or {
+_G.Utilities = _G.Utilities or {
     ["SendNotification"] = function(title,text)
         game:GetService("StarterGui"):SetCore("SendNotification",{Title = title,Text = text})
     end;
 }
 
+_G.Globals = _G.Globals or {
+    ["CoreGui"] = game:GetService("CoreGui"),
+    ["Players"] = game:GetService("Players")
+}
+
 function main()
-    if settings.Run_Global_Chams then
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/troyw1987/troyhub/main/global_chams/minimal.lua'))()
+    local githubgame = "https://raw.githubusercontent.com/troyw1987/troyhub/refs/heads/main/games/%s.lua"
+    local formatted = string.format(githubgame,tostring(gameId))
+
+    loadstring(game:HttpGet(formatted))()
+
+    if not settings.Run_Global_Chams then
+        return
     end
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/troyw1987/troyhub/main/global_chams/minimal.lua'))()
 end
 
 
