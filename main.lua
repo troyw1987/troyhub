@@ -18,11 +18,6 @@ _G.Utilities = _G.Utilities or {
     end;
 }
 
-_G.Globals = _G.Globals or {
-    ["CoreGui"] = game:GetService("CoreGui"),
-    ["Players"] = game:GetService("Players")
-}
-
 function main()
     local githubgame = "https://raw.githubusercontent.com/troyw1987/troyhub/refs/heads/main/games/%s.lua"
     local formatted = string.format(githubgame,tostring(gameId))
